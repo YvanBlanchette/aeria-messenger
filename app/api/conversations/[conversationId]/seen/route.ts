@@ -27,6 +27,7 @@ export async function POST(req: Request, { params }: { params: Promise<IParams> 
 					orderBy: { createdAt: "asc" },
 					include: {
 						seen: true,
+						reactions: { include: { user: true } },
 					},
 				},
 				users: true,
@@ -50,6 +51,7 @@ export async function POST(req: Request, { params }: { params: Promise<IParams> 
 			include: {
 				sender: true,
 				seen: true,
+				reactions: { include: { user: true } },
 			},
 			data: {
 				seen: {

@@ -22,6 +22,7 @@ model User {
   seenMessages    Message[]      @relation("Seen")
   accounts        Account[]
   messages        Message[]
+  reactions       Reaction[]
 }
 
 // account model
@@ -70,4 +71,22 @@ model Message {
 
   senderId        String
   sender          User         @relation(fields: [senderId], references: [id], onDelete: Cascade)
+
+  reactions       Reaction[]
+}
+
+// reaction model
+model Reaction {
+  id        String   @id @default(cuid())
+  emoji     String
+  createdAt DateTime @default(now())
+
+  userId    String
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  messageId String
+  message   Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, messageId, emoji])
+  @@index([messageId])
 }

@@ -11,6 +11,7 @@ import type { FullMessageType } from "@/app/types";
 import Avatar from "@/app/components/avatar";
 import ImageModal from "./image-modal";
 import YouTubeEmbed from "./youtube-embed";
+import MessageReactions from "./message-reactions";
 import { getYouTubeIdIfOnlyUrl } from "@/app/libs/youtube";
 
 type MessageBoxProps = {
@@ -74,7 +75,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({
 
   // Tight vertical spacing between grouped messages; normal padding otherwise.
   const container = clsx(
-    "flex gap-3 px-4",
+    "flex gap-3 px-4 group",
     isFirstInGroup ? "pt-4" : "pt-0.5",
     isLastInGroup ? "pb-0" : "pb-0",
     isOwn && "justify-end"
@@ -88,9 +89,9 @@ const MessageBox: React.FC<MessageBoxProps> = ({
   const body = clsx("flex flex-col gap-1", isOwn && "items-end");
 
   const message = clsx(
-    "text-sm w-fit overflow-hidden shadow",
-    isOwn ? "bg-[#C9A84C] text-white" : "bg-white text-gray-900",
-    isRich ? "rounded-md p-0" : "rounded-full py-3 px-4 break-words"
+    "text-sm w-fit overflow-hidden",
+    isOwn ? "bg-[#C9A84C] text-white" : "bg-gray-100",
+    isRich ? "rounded-md p-0" : "rounded-full py-2 px-3 break-words"
   );
 
   return (
@@ -146,6 +147,12 @@ const MessageBox: React.FC<MessageBoxProps> = ({
             {`Vu par ${seenList}`}
           </span>
         )}
+
+        <MessageReactions
+          messageId={data.id}
+          reactions={data.reactions || []}
+          isOwn={isOwn}
+        />
       </div>
     </div>
   );

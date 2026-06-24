@@ -19,7 +19,8 @@ export const metadata: Metadata = siteConfig;
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en">
+    <html lang="fr">
+      <head><meta name="apple-mobile-web-app-title" content="ÆRIA Messenger" /></head>
       <body className={inter.className}>
         <AuthContext>
           {/* react hot toast */}
