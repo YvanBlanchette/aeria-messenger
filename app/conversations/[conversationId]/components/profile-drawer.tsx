@@ -44,7 +44,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
       return `${data.users.length} members`;
     }
 
-    return isActive ? "Online" : "Offline";
+    return isActive ? "En Ligne" : "Hors Ligne";
   }, [data, isActive]);
 
   return (
@@ -88,7 +88,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                               onClick={onClose}
                               className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:ring-offset-2"
                             >
-                              <span className="sr-only">Close panel</span>
+                              <span className="sr-only">Fermer le Panneau</span>
                               <IoClose size={24} />
                             </button>
                           </div>
@@ -122,7 +122,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                                 <IoTrash size={20} />
                               </div>
                               <div className="text-sm font-light text-neutral-600">
-                                Delete
+                                Supprimer la conversation
                               </div>
                             </button>
                           </div>
@@ -132,7 +132,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                               {data.isGroup ? (
                                 <div>
                                   <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
-                                    Emails
+                                    Courriels
                                   </dt>
                                   <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
                                     {data.users
@@ -143,7 +143,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                               ) : (
                                 <div>
                                   <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
-                                    Email
+                                    Courriel
                                   </dt>
                                   <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
                                     {otherUser.email}
@@ -156,7 +156,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                                   <hr />
                                   <div>
                                     <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
-                                      Joined
+                                      Inscription
                                     </dt>
                                     <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
                                       <time dateTime={joinedDate}>
