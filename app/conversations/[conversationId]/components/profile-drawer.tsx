@@ -86,7 +86,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                             <button
                               type="button"
                               onClick={onClose}
-                              className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+                              className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:ring-offset-2"
                             >
                               <span className="sr-only">Close panel</span>
                               <IoClose size={24} />

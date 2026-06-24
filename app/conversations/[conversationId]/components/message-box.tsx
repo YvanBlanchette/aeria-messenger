@@ -31,7 +31,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({ data, isLast }) => {
   const body = clsx("flex flex-col gap-2", isOwn && "item-end");
   const message = clsx(
     "text-sm w-fit overflow-hidden",
-    isOwn ? "bg-sky-500 text-white" : "bg-gray-100",
+    isOwn ? "bg-[#C9A84C] text-white" : "bg-gray-100",
     data.image ? "rounded-md p-0" : "rounded-full py-2 px-3"
   );
 
@@ -63,7 +63,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({ data, isLast }) => {
               />
               <button
                 onClick={() => setImageModalOpen(true)}
-                className="cursor-pointer focus:outline-sky-500"
+                className="cursor-pointer focus:outline-[#C9A84C]"
               >
                 <Image
                   src={data.image}

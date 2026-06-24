@@ -98,7 +98,7 @@ const AuthForm = () => {
             <Input
               type="text"
               id="name"
-              label="Name"
+              label="Nom Complet"
               placeholder="John Doe"
               register={register}
               errors={errors}
@@ -108,7 +108,7 @@ const AuthForm = () => {
           <Input
             type="email"
             id="email"
-            label="Email Address"
+            label="Adresse Courriel"
             placeholder="johndoe@email.com"
             register={register}
             errors={errors}
@@ -118,7 +118,7 @@ const AuthForm = () => {
           <Input
             type="password"
             id="password"
-            label="Password"
+            label="Mot de passe"
             placeholder="••••••••••"
             register={register}
             errors={errors}
@@ -126,7 +126,7 @@ const AuthForm = () => {
           />
 
           <Button type="submit" disabled={isLoading} fullWidth>
-            {variant === "LOGIN" ? "Sign in" : "Register"}
+            {variant === "LOGIN" ? "Se Connecter" : "S'Enregistrer"}
           </Button>
         </form>
 
@@ -142,7 +142,7 @@ const AuthForm = () => {
 
             <div className="relative flex justify-center text-sm">
               <span className="bg-white px-2 text-gray-500">
-                Or continue with
+                Ou Continuer avec
               </span>
             </div>
           </div>
@@ -164,12 +164,12 @@ const AuthForm = () => {
         <div className="flex gap-2 justify-center text-sm mt-6 px-2 text-gray-500">
           <p>
             {variant === "LOGIN"
-              ? "New to Messenger?"
-              : "Already have an account?"}
+              ? "Vous n'avez pas de compte?"
+              : "Vous avez déjà un compte?"}
           </p>
 
           <a onClick={toggleVariant} className="underline cursor-pointer">
-            {variant === "LOGIN" ? "Create an account" : "Log in"}
+            {variant === "LOGIN" ? "Créer un compte" : "Se Connecter"}
           </a>
         </div>
       </div>

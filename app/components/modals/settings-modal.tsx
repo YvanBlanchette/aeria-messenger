@@ -71,13 +71,13 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
               Profile
             </h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">
-              Edit your public information
+              Modifier vos informations personnelles.
             </p>
 
             <div className="mt-10 flex flex-col gap-y-8">
               <Input
                 disabled={isLoading}
-                label="Name"
+                label="Nom d'utilisateur"
                 id="name"
                 errors={errors}
                 required
@@ -115,7 +115,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                     }
                   >
                     <Button type="button" disabled={isLoading} secondary>
-                      Change
+                      Changer
                     </Button>
                   </CldUploadButton>
                 </div>
@@ -130,10 +130,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
               disabled={isLoading}
               secondary
             >
-              Cancel
+              Retour
             </Button>
             <Button type="submit" disabled={isLoading}>
-              Save
+              Sauvegarder
             </Button>
           </div>
         </div>

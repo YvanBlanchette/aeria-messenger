@@ -56,7 +56,7 @@ const Form = () => {
         onUpload={handleUpload}
         uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_PRESET}
       >
-        <HiPhoto size={30} className="text-sky-500" />
+        <HiPhoto size={30} className="text-[#C9A84C]" />
       </CldUploadButton>
 
       <form
@@ -68,12 +68,12 @@ const Form = () => {
           register={register}
           errors={errors}
           required
-          placeholder="Type a message..."
+          placeholder="Écrire un message..."
         />
 
         <button
           type="submit"
-          className="rounded-full p-2 bg-sky-500 cursor-pointer hover:bg-sky-600 transition"
+          className="rounded-full p-2 bg-[#C9A84C] cursor-pointer hover:bg-[#9A6F14] transition"
         >
           <HiPaperAirplane size={18} className="text-white" />
         </button>
