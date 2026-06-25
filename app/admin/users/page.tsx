@@ -63,14 +63,13 @@ const AdminUsersPage = async ({
               </tr>
             )}
             {users.map((user) => (
-              <tr key={user.id} className="hover:bg-gray-50">
+              <Link key={user.id}
+                href={`/admin/users/${user.id}`}
+              >
+              <tr  className="hover:bg-gray-50">
                 <td className="px-4 py-3 whitespace-nowrap">
-                  <Link
-                    href={`/admin/users/${user.id}`}
-                    className="text-sm font-medium text-[#9A6F14] hover:underline"
-                  >
+
                     {user.name || "(sans nom)"}
-                  </Link>
                 </td>
                 <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-600">
                   {user.email || "—"}
@@ -106,7 +105,8 @@ const AdminUsersPage = async ({
                     locale: fr,
                   })}
                 </td>
-              </tr>
+                </tr>
+                </Link>
             ))}
           </tbody>
         </table>
