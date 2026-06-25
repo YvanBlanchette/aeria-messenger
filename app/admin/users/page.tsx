@@ -65,8 +65,9 @@ const AdminUsersPage = async ({
             {users.map((user) => (
               <Link key={user.id}
                 href={`/admin/users/${user.id}`}
+                className="hover:bg-gray-50 w-full"
               >
-              <tr  className="hover:bg-gray-50">
+              <tr>
                 <td className="px-4 py-3 whitespace-nowrap">
 
                     {user.name || "(sans nom)"}
