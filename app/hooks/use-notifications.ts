@@ -54,6 +54,9 @@ const useNotifications = () => {
 
 	const notify = useCallback(
 		(message: FullMessageType) => {
+			// Defensive: payload may be partial
+			if (!message?.sender) return;
+
 			// Don't notify for own messages
 			if (message.sender.email === pusherKey) return;
 			// Don't notify if user is currently looking at this conversation

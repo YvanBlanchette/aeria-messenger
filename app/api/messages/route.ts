@@ -56,6 +56,8 @@ export async function POST(req: Request) {
 				messages: {
 					include: {
 						seen: true,
+						sender: true,
+						reactions: { include: { user: true } },
 					},
 				},
 			},
