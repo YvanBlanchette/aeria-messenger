@@ -17,7 +17,7 @@ const AdminLayout = async ({ children }: PropsWithChildren) => {
               href="/admin"
               className="text-lg font-bold text-[#C9A84C]"
             >
-              Admin — Aeria Messenger
+              Tableau de bord
             </Link>
             <Link
               href="/admin/users"

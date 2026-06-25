@@ -1,28 +1,32 @@
 import prisma from "@/app/libs/prismadb";
 
-import getSession from "@/app/actions/get-session";
+import getCurrentUser from "@/app/actions/get-current-user";
+import { getFriendIds } from "@/app/libs/connections";
 
 const getUsers = async () => {
-  const session = await getSession();
+	const currentUser = await getCurrentUser();
 
-  if (!session?.user?.email) return [];
+	if (!currentUser?.id) return [];
 
-  try {
-    const users = await prisma.user.findMany({
-      orderBy: {
-        createdAt: "desc",
-      },
-      where: {
-        NOT: {
-          email: session.user.email,
-        },
-      },
-    });
+	try {
+		const friendIds = await getFriendIds(currentUser.id);
 
-    return users;
-  } catch (error: unknown) {
-    return [];
-  }
+		if (friendIds.length === 0) return [];
+
+		const users = await prisma.user.findMany({
+			orderBy: {
+				createdAt: "desc",
+			},
+			where: {
+				id: { in: friendIds },
+				deletedAt: null, // also hide soft-deleted users
+			},
+		});
+
+		return users;
+	} catch (error: unknown) {
+		return [];
+	}
 };
 
 export default getUsers;
