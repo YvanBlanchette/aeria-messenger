@@ -4,7 +4,9 @@ import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 
 import { requireAdmin } from "@/app/libs/admin-check";
+import { isProtectedAdminEmail } from "@/app/libs/admin-actions";
 import prisma from "@/app/libs/prismadb";
+import AdminUserActions from "./components/admin-user-actions";
 
 type IParams = {
   id: string;
@@ -15,7 +17,7 @@ const AdminUserDetailPage = async ({
 }: {
   params: Promise<IParams>;
 }) => {
-  await requireAdmin();
+  const admin = await requireAdmin();
   const { id } = await params;
 
   const user = await prisma.user.findUnique({
@@ -92,11 +94,30 @@ const AdminUserDetailPage = async ({
             )}
             {user.bannedAt && (
               <span className="inline-flex px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700">
-                Banni le {format(new Date(user.bannedAt), "d MMM yyyy", { locale: fr })}
+                Banni le{" "}
+                {format(new Date(user.bannedAt), "d MMM yyyy", { locale: fr })}
+              </span>
+            )}
+            {user.deletedAt && (
+              <span className="inline-flex px-2 py-0.5 rounded-full text-xs font-medium bg-gray-200 text-gray-700">
+                Supprimé le{" "}
+                {format(new Date(user.deletedAt), "d MMM yyyy", { locale: fr })}
               </span>
             )}
           </div>
         </div>
+      </div>
+
+      <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <h2 className="text-lg font-semibold text-gray-900 mb-4">Actions</h2>
+        <AdminUserActions
+          userId={user.id}
+          isBanned={!!user.bannedAt}
+          isAdmin={user.role === "ADMIN"}
+          isDeleted={!!user.deletedAt}
+          isSelf={user.id === admin.id}
+          isProtected={isProtectedAdminEmail(user.email)}
+        />
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -150,7 +171,10 @@ const AdminUserDetailPage = async ({
               >
                 <div>
                   <p className="text-sm font-medium text-gray-900">
-                    {conv.name || (conv.isGroup ? "Groupe sans nom" : "Conversation 1-on-1")}
+                    {conv.name ||
+                      (conv.isGroup
+                        ? "Groupe sans nom"
+                        : "Conversation 1-on-1")}
                   </p>
                   <p className="text-xs text-gray-500">
                     {conv._count.messages} messages

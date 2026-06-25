@@ -19,6 +19,7 @@ model User {
   bannedAt        DateTime?
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
+  deletedAt       DateTime?
 
   conversations   Conversation[]
   seenMessages    Message[]      @relation("Seen")
@@ -91,6 +92,22 @@ model Reaction {
 
   @@unique([userId, messageId, emoji])
   @@index([messageId])
+}
+
+// admin audit log
+model AdminAction {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+
+  adminId     String
+  adminEmail  String
+  action      String   // "BAN", "UNBAN", "DELETE", "PROMOTE", "DEMOTE"
+  targetId    String?
+  targetEmail String?
+  metadata    String?  // optional JSON-as-string for extra context
+
+  @@index([createdAt])
+  @@index([targetId])
 }
 
 enum UserRole {
